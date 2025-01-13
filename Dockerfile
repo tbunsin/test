@@ -15,8 +15,8 @@ WORKDIR /var/www/html
 COPY wp-content /var/www/html/wp-content
 
 # Set correct permissions
-RUN chown -R www-data:www-data /var/www/html \
-    && chmod -R 755 /var/www/html
+# Set permissions for the configuration files
+RUN chmod 644 /var/www/html/wp-config.php /var/www/html/wp-config-docker.php
 
 # Copy wp-config.php into the container
 COPY wp-config.php /var/www/html/wp-config.php
