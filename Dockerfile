@@ -14,12 +14,15 @@ WORKDIR /var/www/html
 # Ensure wp-content exists in your project directory
 COPY wp-content /var/www/html/wp-content
 
-# Set correct permissions
-# Set permissions for the configuration files
-RUN chown -R www-data:www-data /var/www/html && chmod -R 755 /var/www/html 
 # Copy wp-config.php into the container
+# Ensure wp-config.php exists in your project directory
 COPY wp-config.php /var/www/html/wp-config.php
-#COPY wp-config-docker.php /var/www/html/wp-config-docker.php
+
+# Set permissions for WordPress files
+RUN chown -R www-data:www-data /var/www/html/wp-content && \
+    chmod -R 755 /var/www/html/wp-content && \
+    chown www-data:www-data /var/www/html/wp-config.php && \
+    chmod 644 /var/www/html/wp-config.php
 
 # Install additional PHP extensions if needed
 RUN docker-php-ext-install mysqli pdo pdo_mysql
@@ -29,4 +32,3 @@ EXPOSE 80
 
 # Start Apache server
 CMD ["apache2-foreground"]
-

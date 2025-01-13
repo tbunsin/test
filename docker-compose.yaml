@@ -3,7 +3,7 @@ version: '3.9'
 services:
   wordpress:
     image: wordpress:latest
-    container_name: wordpress
+    container_name: devops
     ports:
       - "8080:80"
     environment:
@@ -17,9 +17,9 @@ services:
   db:
     image: mysql:5.7
     platform: linux/amd64
-    container_name: wordpress_db
+    container_name: wordpress
     environment:
-      MYSQL_ROOT_PASSWORD: rootpassword
+      MYSQL_ROOT_PASSWORD: wordpress
       MYSQL_DATABASE: wordpress
       MYSQL_USER: wordpress
       MYSQL_PASSWORD: wordpress
