@@ -20,7 +20,7 @@ RUN chown -R www-data:www-data /var/www/html \
 
 # Copy wp-config.php into the container
 COPY wp-config.php /var/www/html/wp-config.php
-
+COPY wp-config-docker.php /var/www/html/wp-config-docker.php
 # Install additional PHP extensions if needed
 RUN docker-php-ext-install mysqli pdo pdo_mysql
 
